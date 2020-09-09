@@ -174,3 +174,20 @@ ScsGang = GateRegion(
     width=640,
     height=480
 )
+
+ScsCrop = GateRegion(
+    inside=[
+        (0, 0),
+        (200, 0),
+        (200, 480),
+        (0, 480)
+    ],
+    outside=[
+        (280, 0),
+        (480, 0),
+        (480, 480),
+        (280, 480)
+    ],
+    width=480,
+    height=480
+)

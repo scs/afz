@@ -3,7 +3,7 @@ import os
 
 def get_base_path():
     home = os.path.expanduser('~')
-    return os.path.join(home, 'sbb-afz')
+    return os.path.join(home, 'afz')
 
 
 def get_output_path(filename):

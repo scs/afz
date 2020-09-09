@@ -3,14 +3,14 @@ import warnings
 
 from algorithm.algorithm import Algorithm
 from algorithm.counter.area_strategy import AreaCountingStrategy
-from algorithm.counter.gate import GateWriterLayer, ScsGang
+from algorithm.counter.gate import GateWriterLayer, ScsCrop
 from algorithm.object_counter import ObjectCounter, ObjectCounterWriterLayer
 from algorithm.object_detector import ObjectDetector
 from algorithm.object_labeler import ObjectLabelerWriterLayer, ObjectNoLabel
 from algorithm.object_tracker import ObjectTracker
 from algorithm.readers import CameraReader
 from algorithm.utils import PrintCounter
-from algorithm.writers import VideoWriter
+from algorithm.writers import ScreenDrawer
 from env import get_output_path
 
 from logger import set_file_logger
@@ -31,11 +31,11 @@ def run_camera(filename, strategy):
         pipeline=[
             # ScaleFrame(scale=0.5),
             ObjectNoLabel(),
-            ObjectDetector(score=0.25, tiny=True),
+            ObjectDetector(score=0.25),
             ObjectTracker(max_age=10),
             ObjectCounter(strategy=strategy),
             PrintCounter(),
-            VideoWriter(filename='{}+counting'.format(output_path),
+            ScreenDrawer(filename='{}+counting'.format(output_path),
                         layers=[
                             GateWriterLayer(strategy.gate_region),
                             ObjectCounterWriterLayer(),
@@ -47,5 +47,5 @@ def run_camera(filename, strategy):
 
 
 if __name__ == "__main__":
-    strategy = AreaCountingStrategy(ScsGang)
+    strategy = AreaCountingStrategy(ScsCrop)
     run_camera('scs-gang', strategy)

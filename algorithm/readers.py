@@ -52,7 +52,7 @@ class CameraReader(AlgoReader):
 
     def __init__(self):
         self.logger = get_logger(self)
-        self.video_capture = cv2.VideoCapture(1)
+        self.video_capture = cv2.VideoCapture(0)
         self._t0 = time.time()
 
     def _get_fps(self):
@@ -72,11 +72,13 @@ class CameraReader(AlgoReader):
         width = int(self.video_capture.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(self.video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
+        image = image[0:480, 0:480]
+
         return AlgoContainer(
             position=position,
             time=time,
             frame=AlgoFrame(
-                width=width,
+                width=width-160,
                 height=height,
                 image=image,
                 fps=8

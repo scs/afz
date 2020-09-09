@@ -20,7 +20,7 @@ class DataSet(object):
 
 
 class ObjectDetector(AlgoStep):
-    def __init__(self, score=0.25, dataset=DataSet.tiny):
+    def __init__(self, score=0.25, dataset=DataSet.normal):
         self.logger = get_logger(self)
         if dataset == DataSet.normal:
             self.yolo = YOLO(
