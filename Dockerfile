@@ -1,7 +1,6 @@
 FROM nvcr.io/nvidia/l4t-ml:r32.4.3-py3
 
 RUN apt-get update && \
-    apt-get upgrade -y && \
     apt-get install libgfortran3 libgtk2.0-dev pkg-config libcanberra-gtk-module libcanberra-gtk3-module -y && \
     rm -rf /var/lib/apt/lists/*
 
