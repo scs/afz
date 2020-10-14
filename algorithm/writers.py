@@ -65,12 +65,11 @@ class ScreenDrawer(AlgoStep):
             for layer in self.layers:
                 layer.draw(container, frame)
 
-            frame2 = cv2.flip(frame, 1)
             height = frame.shape[0]
             width = frame.shape[1]
             dim = (width * 2, height * 2)
-            frame3 = cv2.resize(frame2, dim, cv2.INTER_AREA)
-            cv2.imshow(self.filename, frame3)
+            frame = cv2.resize(frame, dim, cv2.INTER_AREA)
+            cv2.imshow(self.filename, frame)
             cv2.waitKey(int(delta_video - delta_local + 1))
             # TODO Read key and save image when p
 

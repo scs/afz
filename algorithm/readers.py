@@ -73,6 +73,7 @@ class CameraReader(AlgoReader):
         height = int(self.video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
         image = image[0:480, 0:480]
+        image = cv2.flip(image, 1)
 
         return AlgoContainer(
             position=position,
