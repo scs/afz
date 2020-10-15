@@ -12,7 +12,6 @@ from algorithm.readers import CameraReader
 from algorithm.utils import PrintCounter
 from algorithm.writers import ScreenDrawer
 from env import get_output_path
-
 from logger import set_file_logger
 
 # Remove tensorflow warnings
@@ -29,18 +28,17 @@ def run_camera(filename, strategy):
         output_path=output_path,
         reader=CameraReader(),
         pipeline=[
-            # ScaleFrame(scale=0.5),
             ObjectNoLabel(),
             ObjectDetector(score=0.25),
             ObjectTracker(max_age=10),
             ObjectCounter(strategy=strategy),
             PrintCounter(),
             ScreenDrawer(filename='{}+counting'.format(output_path),
-                        layers=[
-                            GateWriterLayer(strategy.gate_region),
-                            ObjectCounterWriterLayer(),
-                            ObjectLabelerWriterLayer()
-                        ])
+                         layers=[
+                             GateWriterLayer(strategy.gate_region),
+                             ObjectCounterWriterLayer(),
+                             ObjectLabelerWriterLayer()
+                         ])
         ]
     )
     algo.run()

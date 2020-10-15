@@ -22,8 +22,6 @@ def label_video(video_dir, video_filename, label_file):
 
     label_file.write('frame,timestamp,entered,left\n')
 
-    count = 0
-
     while cap.isOpened():
         ret, frame = cap.read()
 

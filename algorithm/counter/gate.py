@@ -101,43 +101,6 @@ Gate1 = GateRegion(
 Gate1_960x540 = GateRegion(Gate1.inside, Gate1.outside, factor=0.5)
 Gate1_480x270 = GateRegion(Gate1.inside, Gate1.outside, factor=0.25)
 
-Gate2 = GateRegion(
-    inside=[
-        (0, 0),
-        (200, 0),
-        (475, 800),
-        (990, 600),
-        (960, 0),
-        (1920, 0),
-        (1920, 1080),
-        (0, 1080)
-    ],
-    outside=[
-        (350, 0),
-        (550, 650),
-        (940, 500),
-        (910, 0),
-    ]
-)
-
-Hallway = GateRegion(
-    inside=[
-        (660, 0),
-        (980, 550),
-        (1400, 510),
-        (1500, 0)
-    ],
-    outside=[
-        (0, 180),
-        (950, 760),
-        (1400, 770),
-        (1590, 0),
-        (1920, 0),
-        (1920, 1080),
-        (0, 1080)
-    ]
-)
-
 Stairs = GateRegion(
     inside=[
         (0, 430),
@@ -157,23 +120,6 @@ Stairs = GateRegion(
 
 Stairs_960x540 = GateRegion(Stairs.inside, Stairs.outside, factor=0.5)
 Stairs_480x270 = GateRegion(Stairs.inside, Stairs.outside, factor=0.25)
-
-ScsGang = GateRegion(
-    inside=[
-        (0, 0),
-        (350, 0),
-        (350, 480),
-        (0, 480)
-    ],
-    outside=[
-        (420, 0),
-        (640, 0),
-        (640, 480),
-        (420, 480)
-    ],
-    width=640,
-    height=480
-)
 
 ScsCrop = GateRegion(
     inside=[

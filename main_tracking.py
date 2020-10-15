@@ -10,7 +10,6 @@ from algorithm.pickle import PickleWriter
 from algorithm.readers import VideoReader
 from algorithm.writers import VideoWriter
 from env import get_output_path, get_video_input_path, get_label_input_path, get_pickle_path
-
 from logger import set_file_logger
 
 # Remove tensorflow warnings
@@ -44,21 +43,10 @@ def run_tracking_algo(filename, fps):
 
 def run_all():
     filenames = [
-        # '041_gate1-480x270',
-        # '041_gate1-960x540',
-        # '041_gate1-1920x1080',
-        # '041_stairs-480x270',
-        # '041_stairs-960x540',
         '041_stairs-1920x1080',
-        # '041_gate2-1920x1080',
-        # '041_hallway-1920x1080',
     ]
 
     fps = [
-        # 1,
-        # 3,
-        # 5,
-        # 10,
         15,
         30
     ]
@@ -79,5 +67,4 @@ def run_all():
 
 
 if __name__ == "__main__":
-    # run_tracking_algo('041_gate2-1920x1080', 15)
     run_all()

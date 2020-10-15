@@ -1,7 +1,6 @@
 from abc import ABCMeta, abstractmethod
-from typing import List
-
 from timeit import time
+from typing import List
 
 import cv2
 
@@ -80,42 +79,5 @@ class ScreenDrawer(AlgoStep):
 
 class CsvWriter(AlgoStep):
 
-    # def __init__(self, filename):
-    #     self.writer = open('{}.csv'.format(filename), 'w')
-    #     self.writer.write('{}\n'.format(','.join([
-    #         'timestamp',
-    #         'id',
-    #         'state',
-    #         'time_since_update',
-    #         'hits',
-    #         'age',
-    #         'x1',
-    #         'y1',
-    #         'x2',
-    #         'y2'
-    #     ])))
-
     def process(self, container: AlgoContainer):
-
-        if container.tracks:
-            for track in container.tracks:
-                bbox = track.to_tlbr()
-                x1 = int(bbox[0])
-                y1 = int(bbox[1])
-                x2 = int(bbox[2])
-                y2 = int(bbox[3])
-
-                # self.writer.write('{}\n'.format(','.join(map(str, [
-                #     container.time,
-                #     track.track_id,
-                #     track.state,
-                #     track.time_since_update,
-                #     track.hits,
-                #     track.age,
-                #     x1,
-                #     y1,
-                #     x2,
-                #     y2
-                # ]))))
-
         return container

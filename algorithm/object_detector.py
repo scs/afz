@@ -1,11 +1,10 @@
 import cv2
 from PIL import Image
 
-from algorithm.writers import WriterLayer
-from yolo3.yolo import YOLO
-
 from algorithm.algorithm import AlgoStep, AlgoContainer
+from algorithm.writers import WriterLayer
 from logger import get_logger
+from yolo3.yolo import YOLO
 
 
 class ObjectDetection(object):

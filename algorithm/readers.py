@@ -1,9 +1,8 @@
 import os
 import pickle
+from timeit import time
 
 import cv2
-
-from timeit import time
 
 from algorithm.algorithm import AlgoReader, AlgoContainer, AlgoFrame
 from logger import get_logger
@@ -79,7 +78,7 @@ class CameraReader(AlgoReader):
             position=position,
             time=time,
             frame=AlgoFrame(
-                width=width-160,
+                width=width - 160,
                 height=height,
                 image=image,
                 fps=8

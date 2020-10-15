@@ -1,5 +1,6 @@
 # vim: expandtab:ts=4:sw=4
 import argparse
+
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
 
@@ -20,7 +21,7 @@ def create_link(
         network = _batch_norm_fn(incoming, scope=scope + "/bn")
         network = nonlinearity(network)
         if summarize_activations:
-            tf.summary.histogram(scope+"/activations", network)
+            tf.summary.histogram(scope + "/activations", network)
 
     pre_block_network = network
     post_block_network = network_builder(pre_block_network, scope)
@@ -32,7 +33,7 @@ def create_link(
             "%d != %d" % (outgoing_dim, 2 * incoming)
         projection = slim.conv2d(
             incoming, outgoing_dim, 1, 2, padding="SAME", activation_fn=None,
-            scope=scope+"/projection", weights_initializer=weights_initializer,
+            scope=scope + "/projection", weights_initializer=weights_initializer,
             biases_initializer=None, weights_regularizer=regularizer)
         network = projection + post_block_network
     else:
@@ -74,7 +75,6 @@ def residual_block(incoming, scope, nonlinearity=tf.nn.elu,
                    bias_initializer=tf.zeros_initializer(), regularizer=None,
                    increase_dim=False, is_first=False,
                    summarize_activations=True):
-
     def network_builder(x, s):
         return create_inner_block(
             x, s, nonlinearity, weights_initializer, bias_initializer,
@@ -158,16 +158,15 @@ def _create_network(incoming, reuse=None, weight_decay=1e-8):
 
 
 def _network_factory(weight_decay=1e-8):
-
     def factory_fn(image, reuse):
-            with slim.arg_scope([slim.batch_norm, slim.dropout],
-                                is_training=False):
-                with slim.arg_scope([slim.conv2d, slim.fully_connected,
-                                     slim.batch_norm, slim.layer_norm],
-                                    reuse=reuse):
-                    features, logits = _create_network(
-                        image, reuse=reuse, weight_decay=weight_decay)
-                    return features, logits
+        with slim.arg_scope([slim.batch_norm, slim.dropout],
+                            is_training=False):
+            with slim.arg_scope([slim.conv2d, slim.fully_connected,
+                                 slim.batch_norm, slim.layer_norm],
+                                reuse=reuse):
+                features, logits = _create_network(
+                    image, reuse=reuse, weight_decay=weight_decay)
+                return features, logits
 
     return factory_fn
 

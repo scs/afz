@@ -1,9 +1,10 @@
 # vim: expandtab:ts=4:sw=4
-import os
-import errno
 import argparse
-import numpy as np
+import errno
+import os
+
 import cv2
+import numpy as np
 import tensorflow as tf
 
 
@@ -194,11 +195,11 @@ def parse_args():
         required=True)
     parser.add_argument(
         "--detection_dir", help="Path to custom detections. Defaults to "
-        "standard MOT detections Directory structure should be the default "
-        "MOTChallenge structure: [sequence]/det/det.txt", default=None)
+                                "standard MOT detections Directory structure should be the default "
+                                "MOTChallenge structure: [sequence]/det/det.txt", default=None)
     parser.add_argument(
         "--output_dir", help="Output directory. Will be created if it does not"
-        " exist.", default="detections")
+                             " exist.", default="detections")
     return parser.parse_args()
 
 

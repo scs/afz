@@ -3,14 +3,13 @@
 Class definition of YOLO_v3 style detection model on image and video
 """
 
-import os
 import colorsys
+import os
 
 import numpy as np
-
 from keras import backend as K
-from keras.models import load_model
 from keras.layers import Input
+from keras.models import load_model
 from keras.utils import multi_gpu_model
 
 from yolo3.model import yolo_eval, yolo_body, tiny_yolo_body
@@ -44,9 +43,6 @@ class YOLO(object):
         self.boxes, self.scores, self.classes = self.generate()
         self.accepted_classes = [
             'person',
-            # 'bicycle',
-            # 'car',
-            # 'motorbike'
         ]
 
     def _get_class(self):
@@ -135,7 +131,6 @@ class YOLO(object):
                 continue
 
             box = out_boxes[i]
-            # score = out_scores[i]
             x = int(box[1])
             y = int(box[0])
             w = int(box[3] - box[1])

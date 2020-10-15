@@ -1,15 +1,14 @@
 import cv2
 import numpy as np
 
+from algorithm.algorithm import AlgoStep, AlgoContainer
 from algorithm.writers import WriterLayer
-from deep_sort import preprocessing
 from deep_sort import nn_matching
+from deep_sort import preprocessing
 from deep_sort.detection import Detection
 from deep_sort.tracker import Tracker
-from tools import generate_detections as gdet
-
-from algorithm.algorithm import AlgoStep, AlgoContainer
 from logger import get_logger
+from tools import generate_detections as gdet
 
 
 class ObjectTracker(AlgoStep):

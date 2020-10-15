@@ -8,11 +8,6 @@ def set_file_logger(filename):
     logging.root.handlers = []
     logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
 
-    # fh = logging.FileHandler(filename)
-    # fh.setLevel(LOG_LEVEL)
-    # fh.setFormatter(logging.Formatter(LOG_FORMAT))
-    # logging.getLogger().addHandler(fh)
-
 
 if len(logging.root.handlers) == 0:
     set_file_logger('poc-afz.log')

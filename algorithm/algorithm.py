@@ -1,8 +1,7 @@
-from abc import ABCMeta, abstractmethod
 import sys
 import traceback
 import typing
-
+from abc import ABCMeta, abstractmethod
 from timeit import time
 
 from logger import get_logger
@@ -96,7 +95,7 @@ class Algorithm(object):
                 delta_st = 1000 * (st2 - st1)
                 self.logger.info('Timed step {} at {}ms'.format(step.__class__.__name__, delta_st))
                 self.writer.write('{},'.format(delta_st))
-            except Exception as ex:
+            except Exception:
                 self.logger.error('Error while processing {} at time {}ms'.format(step, container.time))
                 traceback.print_exc(file=sys.stdout)
                 return None

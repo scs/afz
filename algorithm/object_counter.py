@@ -138,16 +138,11 @@ class ObjectCounterCsvWriter(AlgoStep):
         self.logger = get_logger(self)
         self.filename = filename
 
-        # self.writer = open('{}.csv'.format(self.filename), 'w')
-        # self.writer.write('frame,timestamp,entered,left\n')
-
     def process(self, container: AlgoContainer):
         count_in = 0
         count_out = 0
         for object_id, counter in container.counts.items():
             count_in += 1 if counter.has_entered else 0
             count_out += 1 if counter.has_exited else 0
-
-        # self.writer.write('{},{},{},{}\n'.format(container.position, container.time, count_in, count_out))
 
         return container

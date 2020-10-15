@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from keras import backend as K
 import tensorflow as tf
+from keras import backend as K
 
 if __name__ == '__main__':
     K.tensorflow_backend._get_available_gpus()

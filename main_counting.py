@@ -4,17 +4,14 @@ import warnings
 
 from algorithm.algorithm import Algorithm
 from algorithm.counter.area_strategy import AreaCountingStrategy, AreaCountingStrategyWriter
-from algorithm.counter.gate import Gate1, Gate2, Hallway, Stairs, GateWriterLayer, Gate1_960x540, Gate1_480x270, \
-    Stairs_480x270, Stairs_960x540
+from algorithm.counter.gate import Stairs, GateWriterLayer
 from algorithm.object_counter import ObjectCounter, ObjectCounterWriterLayer, ObjectCounterCsvWriter
-from algorithm.object_labeler import ObjectLabeler, ObjectLabelerWriterLayer
+from algorithm.object_labeler import ObjectLabelerWriterLayer
 from algorithm.pickle import PickleLoader
 from algorithm.readers import VideoReader, PickleReader
 from algorithm.utils import PrintCounter
-from algorithm.writers import ScreenDrawer, VideoWriter
-
-from env import get_video_input_path, get_output_path, get_pickle_path, get_label_input_path
-
+from algorithm.writers import VideoWriter
+from env import get_video_input_path, get_output_path, get_pickle_path
 from logger import set_file_logger
 
 # Remove tensorflow warnings
@@ -22,8 +19,6 @@ warnings.filterwarnings('ignore')
 
 
 def run_counting_algo(filename, fps, strategy, offline):
-    # tag = 'crowdhuman'
-    # tag = 'score0_25'
     tag = 'tiny'
     output_path = get_output_path('algo-{}-{}fps-{}-{}'.format(filename, fps, tag, strategy.name))
 
@@ -55,29 +50,14 @@ def run_counting_algo(filename, fps, strategy, offline):
 
 def run_all(offline=True):
     filenames_gate = [
-        # ('041_gate1-1920x1080', Gate1),
         ('041_stairs-1920x1080', Stairs),
-        # ('041_gate1-480x270', Gate1_480x270),
-        # ('041_gate1-960x540', Gate1_960x540),
-        # ('041_stairs-480x270', Stairs_480x270),
-        # ('041_stairs-960x540', Stairs_960x540)
-        # ('041_gate2-1920x1080', Gate2),
-        # ('041_hallway-1920x1080', Hallway),
     ]
 
     strategies_type = [
-        # TopPointCountingStrategy,
-        # CenterPointCountingStrategy,
-        # BottomPointCountingStrategy,
         AreaCountingStrategy
     ]
 
     fps = [
-        # 1,
-        # 3,
-        # 5,
-        # 10,
-        # 15,
         30
     ]
 
@@ -99,13 +79,4 @@ def run_all(offline=True):
 
 
 if __name__ == "__main__":
-    # run_counting_algo('041_gate1-1920x1080', 15, AreaCountingStrategy(Gate1), offline=False)
-    # run_counting_algo('041_gate2-1920x1080', 15, AreaCountingStrategy(Gate2), offline=False)
-    # run_counting_algo('041_hallway-1920x1080', 15, AreaCountingStrategy(Hallway), offline=False)
-    # run_counting_algo('041_stairs-1920x1080', 15, AreaCountingStrategy(Stairs), offline=False)
-
-    # run_counting_algo('041_gate1-960x540', 10, AreaCountingStrategy(Gate1_960x540), offline=False)
-
-    # run_counting_algo('041_stairs-960x540', 10, AreaCountingStrategy(Stairs_960x540), offline=False)
-
     run_all(offline=True)
